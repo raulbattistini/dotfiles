@@ -1,0 +1,12 @@
+{
+  "suggest.timeout": 5000,
+  "suggest.acceptSuggestionOnCommitCharacter": true,
+  "typescript.suggest.includeAutomaticOptionalChainCompletions": true,
+  "typescript.suggest.autoImports": true,
+  "typescript.show.Unused": true,
+  "typescript.showDeprecated": true,
+  "coc.preferences.formatOnSave": true,
+  "coc.preferences.formatOnType": true,
+  "preferences.includePackageJsonAutoImports": true,
+  "languageserver": {}
+}
