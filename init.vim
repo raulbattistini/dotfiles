@@ -18,10 +18,11 @@ Plug 'folke/tokyonight.nvim'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 " (Optional) Multi-entry selection UI.
-" Plug 'github/copilot.vim'
+Plug 'github/copilot.vim'
 " Any valid git URL is allowed
 Plug 'neovim/nvim-lspconfig'
 Plug 'williamboman/nvim-lsp-installer'
+Plug 'neovim/nvim-lsp'
 Plug 'mfussenegger/nvim-jdtls'
 Plug 'preservim/nerdcommenter'
 " Treesitter
@@ -72,8 +73,10 @@ Plug 'rose-pine/vim', { 'as': 'rosepine' }
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 " Vim-Plug:
 Plug 'pineapplegiant/spaceduck', { 'branch': 'main' }
-" Unmanaged plugin (manually installed and updated)
-Plug '~/my-prototype-plugin'
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+Plug 'windwp/nvim-ts-autotag'
+" Plug 'bpstahlman/txtfmt'
+
 " Initialize plugin system
 " - Automatically executes `filetype plugin indent on` and `syntax enable`.
 call plug#end()
@@ -110,20 +113,31 @@ set relativenumber
 set number
 
 function! MyHighlights() abort
-    " highlight Visual     cterm=NONE ctermbg=76  ctermfg=16  gui=NONE guibg=#5fd700 guifg=#000000
+    highlight Visual     cterm=NONE ctermbg=76  ctermfg=16  gui=NONE guibg=#5fd700 guifg=#000000
     highlight StatusLine cterm=NONE ctermbg=231 ctermfg=160 gui=NONE guibg=#ffffff guifg=#440080
-    highlight Normal cterm=NONE ctermbg=17 gui=NONE guibg=#1d0136
-    highlight NonText cterm=NONE ctermbg=17 gui=NONE guibg=#1d0136
+    " highlight Normal cterm=NONE gui=NONE guibg=#340154
+    " highlight NonText cterm=NONE gui=NONE guibg=#340154 or #000110 can also be #222332
+    highlight Normal cterm=NONE gui=NONE guibg=#000110
+    highlight NonText cterm=NONE gui=NONE guibg=#000110
+" Highlight for LineNr (line number column)
+    highlight LineNr ctermbg=NONE gui=NONE guibg=#330b85 guifg=#cfcfcf
+" Set foreground and background color
 endfunction
+
+
+
+let g:go_def_mode='gopls'
+let g:go_info_mode='gopls'
 
 augroup MyColors
     autocmd!
     autocmd ColorScheme * call MyHighlights()
 augroup END
 
-colorscheme tokyonight-night
+set guicursor=n-v-c-i:underscore
 
-" set guicursor=n-v-c-i:underscore
+
+colorscheme synthwave_gh 
 " highlight Visual cterm=NONE ctermbg=76 ctermfg=16 gui=NONE guibg=#5fd700 guifg=#000000
 " highlight StatusLine cterm=NONE ctermbg=231 ctermfg=160 gui=NONE guibg=#ffffff guifg=#d70000
 
