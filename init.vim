@@ -9,11 +9,12 @@ call plug#begin()
 "   - Avoid using standard Vim directory names like 'plugin'
 
 " Make sure you use single quotes
-
+Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install'  }
 " Shorthand notation; fetches https://github.com/junegunn/vim-easy-align
 Plug 'junegunn/vim-easy-align'
 Plug 'voldikss/vim-floaterm'
-Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+Plug 'prettier/vim-prettier', { 'do': 'npm install' }
+" Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 Plug 'folke/tokyonight.nvim'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
@@ -36,10 +37,6 @@ Plug 'yassinebridi/vim-purpura'
 " On-demand loading
 Plug 'preservim/nerdtree', { 'on': 'NERDTreeToggle' }
 Plug 'tpope/vim-fireplace', { 'for': 'clojure' }
-Plug 'prettier/vim-prettier', {
-  \ 'do': 'yarn install --frozen-lockfile --production',
-  \ 'branch': 'release/0.x'
-  \ }
 Plug 'sbdchd/neoformat'
 " Rust-related plugins
 Plug 'rust-lang/rust.vim' " Rust syntax highlighting and integration
@@ -64,7 +61,6 @@ Plug 'jaredgorski/spacecamp'
 Plug 'Rigellute/shades-of-purple.vim'
 Plug 'bignimbus/pop-punk.vim'
 Plug 'amadeus/vim-evokai'
-Plug 'prettier/vim-prettier', { 'do': 'npm install' }
 Plug 'thedenisnikulin/vim-cyberpunk'
 Plug 'artanikin/vim-synthwave84'
 Plug 'dracula/vim', { 'as': 'dracula' }
@@ -83,15 +79,15 @@ call plug#end()
 " You can revert the settings after the call like so:
 "   filetype indent off   " Disable file-type-specific indentation
 "   syntax off            " Disable syntax highlighting
-let g:python_host_prog = 'C:/Python311/python'
-let g:python3_host_prog = 'C:/Python311/python'
+" if linux /bin/python3
+let g:python_host_prog = 'C:\Python313'
+" if linux /bin/python3.12
+let g:python3_host_prog = 'C:\Python313'
 let g:neoformat_try_node_exe = 1
 " Use formatprg when available
 let g:neoformat_try_formatprg = 1
 " Format the current file with Prettier
-autocmd FileType javascript,json,typescript,html,css,scss lua require("prettier").formatFile()
 inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<CR>"
-nnoremap <leader>pf :lua require("prettier").formatFile()<CR>
 
 " Set Harpoon keybindings
 nnoremap <silent> <leader>ha :lua require("harpoon.ui").toggle_quick_menu()<CR>
@@ -121,6 +117,10 @@ function! MyHighlights() abort
     highlight NonText cterm=NONE gui=NONE guibg=#000110
 " Highlight for LineNr (line number column)
     highlight LineNr ctermbg=NONE gui=NONE guibg=#330b85 guifg=#cfcfcf
+    highlight Normal guibg=none
+    highlight NonText guibg=none
+    highlight Normal ctermbg=none
+    highlight NonText ctermbg=none
 " Set foreground and background color
 endfunction
 
@@ -137,7 +137,7 @@ augroup END
 set guicursor=n-v-c-i:underscore
 
 
-colorscheme synthwave_gh 
+colorscheme industry 
 " highlight Visual cterm=NONE ctermbg=76 ctermfg=16 gui=NONE guibg=#5fd700 guifg=#000000
 " highlight StatusLine cterm=NONE ctermbg=231 ctermfg=160 gui=NONE guibg=#ffffff guifg=#d70000
 
@@ -276,3 +276,4 @@ let g:NERDToggleCheckAllLines = 1
 nnoremap <silent> <leader>c} V}:call nerdcommenter#Comment('x', 'toggle')<CR>
 nnoremap <silent> <leader>c{ V{:call nerdcommenter#Comment('x', 'toggle')<CR>
 xnoremap <silent> <leader>c :<C-u>call nerdcommenter#Comment('x', 'toggle')<CR>
+nnoremap <silent> <leader>p :Prettier<CR>
