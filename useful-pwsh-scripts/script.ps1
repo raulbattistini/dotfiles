@@ -1,0 +1,1 @@
+Set-ExecutionPolicy AllSigned -Scope Process -Force; Import-Module $env:ChocolateyInstall\helpers\chocolateyProfile.psm1; refreshenv
